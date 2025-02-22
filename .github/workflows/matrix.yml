@@ -6,21 +6,18 @@ jobs:
       matrix:
         node-version: [14, 16]
         os: [ubuntu-latest, windows-latest]
-        include: # Include the following matrix single combination
-          - node-version: 18
-            os: ubuntu-latest
-        exclude: # Exclude the following matrix single combination
+        exclude:
           - node-version: 14
             os: windows-latest
-    runs-on: ${{ matrix.os }} # Use the operating system from the matrix
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }} # Use the Node.js version from the matrix
       - name: Install dependencies
         run: npm ci
       - name: Build website
         run: npm run build
+  deploy:
+    needs: build
+    # Full path - It can also reference a workflow file in another repository.
+    uses: ./.github/workflows/reusable-deploy.yml
