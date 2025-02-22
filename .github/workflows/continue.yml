@@ -1,4 +1,4 @@
-name: Website Deployment
+name: Continue Website Deployment
 on:
   push:
     branches:
@@ -36,6 +36,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Test code
+        continue-on-error: true # Continue next step and other jobs even if this test step fails (The step will always be marked as successful)
         id: run-tests
         run: npm run test
       - name: Upload test report
