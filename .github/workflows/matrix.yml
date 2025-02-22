@@ -6,6 +6,12 @@ jobs:
       matrix:
         node-version: [14, 16]
         os: [ubuntu-latest, windows-latest]
+        include: # Include the following matrix single combination
+          - node-version: 18
+            os: ubuntu-latest
+        exclude: # Exclude the following matrix single combination
+          - node-version: 14
+            os: windows-latest
     runs-on: ${{ matrix.os }} # Use the operating system from the matrix
     steps:
       - name: Checkout code
