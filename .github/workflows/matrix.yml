@@ -21,3 +21,5 @@ jobs:
     needs: build
     # Full path - It can also reference a workflow file in another repository.
     uses: ./.github/workflows/reusable-deploy.yml
+    with:
+      artifact-name: dist-files
