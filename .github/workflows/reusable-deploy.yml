@@ -18,9 +18,7 @@ on:
 jobs:
   shared-deploy:
     outputs:
-      deploy-outcome:
-        description: Result of the deployment
-        value: ${{ steps.set-result.outputs.set-result }}
+      deploy-outcome: ${{ steps.set-result.outputs.set-result }}
     runs-on: ubuntu-latest
     steps:
       - name: Get code
