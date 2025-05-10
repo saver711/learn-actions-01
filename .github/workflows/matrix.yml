@@ -20,11 +20,11 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dist-files
+          name: dist-files-${{ matrix.os }}-${{ matrix.node-version }} # Prevent the name conflict while still allowing our workflow to build on multiple environments.
           path: dist
   deploy:
     needs: build
     # Full path - It can also reference a workflow file in another repository.
     uses: ./.github/workflows/reusable-deploy.yml
     with:
-      artifact-name: dist-files
+      artifact-name: dist-files-ubuntu-latest-16
