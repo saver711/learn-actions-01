@@ -3,10 +3,10 @@ on: [workflow_call]
 inputs:
   artifact-name:
     description: Name of the artifact to deploy
+    type: string
     required: true
     # required: false
     # default: dist-files
-    # type: string
 jobs:
   shared-deploy:
     runs-on: ubuntu-latest
