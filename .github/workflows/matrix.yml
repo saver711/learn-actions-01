@@ -31,3 +31,9 @@ jobs:
     secrets:
       # deploy-version: ${{ secrets.deploy-version }}
       deploy-version: 1.0.0
+  print-deploy-result:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deploy result
+        run: echo "${{ needs.deploy.outputs.deploy-result }}"
