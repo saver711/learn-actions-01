@@ -28,3 +28,6 @@ jobs:
     uses: ./.github/workflows/reusable-deploy.yml
     with:
       artifact-name: dist-files-ubuntu-latest-16
+    secrets:
+      # deploy-version: ${{ secrets.deploy-version }}
+      deploy-version: 1.0.0
